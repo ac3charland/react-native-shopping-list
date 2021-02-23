@@ -1,21 +1,22 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import 'react-native-gesture-handler'
+import {NavigationContainer} from '@react-navigation/native'
+import React from 'react'
+import {createStackNavigator} from '@react-navigation/stack'
+import StoresScreen from './containers/StoresScreen'
+import ListScreen from './containers/ListScreen'
+
+const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Hello world!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Stores"
+          component={StoresScreen}
+        />
+        <Stack.Screen name="List" component={ListScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  )
+} 
