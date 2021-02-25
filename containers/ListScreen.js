@@ -1,10 +1,10 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 
-const ListScreen = ({navigation, route}) => {
+const ListScreen = () => {
     return (
         <View style={styles.container}>
-            <Text>This is {route.params.name}'s list</Text>
+            <Text>This is Alex's list</Text>
         </View>
     )
 }
