@@ -1,13 +1,33 @@
-import React from 'react';
-import {StyleSheet, View, Button, FlatList, Text} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {StyleSheet, View, FlatList, Text} from 'react-native'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 
-const StoresScreen = ({navigation}) => {
+const StoresScreen = () => {
+
+    const [items, setItems] = useState([])
+
+    useEffect(() => {
+        const getItems = async () => {
+            try {
+                const jsonData = await AsyncStorage.getItem('@stores')
+                const data = jsonData ? JSON.parse(jsonData) : []
+                setItems(data)
+            } 
+            catch (error) {
+                // Error saving data
+            }
+        }
+
+        getItems()
+    }, [])
+
+
     return (
         <View style={styles.container}>
             <Text style={styles.header}>Stores</Text>
             <FlatList
-                data={mockData}
+                data={items}
                 renderItem={({item}) => (
                     <Text style={styles.item}>{item.key}</Text>
                 )}
@@ -15,25 +35,6 @@ const StoresScreen = ({navigation}) => {
         </View>
     )
 }
-
-const mockData = [
-    {key: 'Aldi'},
-    {key: 'Family Fresh'},
-    {key: 'Target'},
-    {key: 'County Market'},
-    {key: 'Aldi'},
-    {key: 'Family Fresh'},
-    {key: 'Target'},
-    {key: 'County Market'},
-    {key: 'Aldi'},
-    {key: 'Family Fresh'},
-    {key: 'Target'},
-    {key: 'County Market'},
-    {key: 'Aldi'},
-    {key: 'Family Fresh'},
-    {key: 'Target'},
-    {key: 'County Market'},
-]
 
 // TODO - Make sure all these styles are doing something
 const styles = StyleSheet.create({
@@ -48,15 +49,15 @@ const styles = StyleSheet.create({
         color: 'black',
         borderBottomColor: 'black',
         borderBottomWidth: 1,
-        backgroundColor: '#fff'
+        backgroundColor: '#fff',
     },
     header: {
         fontSize: 36,
         width: '100%',
         paddingTop: 20,
         paddingBottom: 10,
-        paddingLeft: 20
-    }
+        paddingLeft: 20,
+    },
 })
 
 export default StoresScreen
