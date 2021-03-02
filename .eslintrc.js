@@ -3,7 +3,7 @@ module.exports = {
         browser: true,
         es6: true,
         jest: true,
-        commonjs: true
+        commonjs: true,
     },
     extends: [
         'eslint:recommended',
@@ -16,10 +16,10 @@ module.exports = {
     parser: 'babel-eslint',
     parserOptions: {
         ecmaFeatures: {
-            jsx: true
+            jsx: true,
         },
         ecmaVersion: 11,
-        sourceType: 'module'
+        sourceType: 'module',
     },
     overrides: [
         {
@@ -28,20 +28,20 @@ module.exports = {
                 mount: 'readonly',
                 shallow: 'readonly',
                 cy: 'readonly',
-                context: 'readonly'
+                context: 'readonly',
             },
             rules: {
-                'react/react-in-jsx-scope': 'off'
-            }
-        }
+                'react/react-in-jsx-scope': 'off',
+            },
+        },
     ],
     plugins: [
-        'react'
+        'react',
     ],
     settings: {
         react: {
-            version: '16'
-        }
+            version: '16',
+        },
     },
     rules: {
         'array-bracket-spacing': ['error', 'never'],
@@ -52,7 +52,7 @@ module.exports = {
             objects: 'always-multiline',
             imports: 'always-multiline',
             exports: 'always-multiline',
-            functions: 'never'
+            functions: 'never',
         }],
         'jsx-quotes': ['error', 'prefer-single'],
         'key-spacing': 'error',
@@ -67,6 +67,6 @@ module.exports = {
         'space-before-function-paren': ['error', {anonymous: 'always', named: 'never', asyncArrow: 'always'}],
         'space-infix-ops': ['error', {int32Hint: false}],
         'spaced-comment': ['error', 'always'],
-        'eol-last': ['error', 'always']
-    }
+        'eol-last': ['error', 'always'],
+    },
 }
